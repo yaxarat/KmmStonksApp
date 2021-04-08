@@ -1,0 +1,46 @@
+CREATE TABLE  StockEntity (
+    open REAL NOT NULL,
+    high REAL NOT NULL,
+    low REAL NOT NULL,
+    current REAL NOT NULL,
+    previous_close REAL NOT NULL,
+    name TEXT NOT NULL,
+    ticker_symbol TEXT NOT NULL
+);
+
+CREATE TABLE TickerEntity (
+    ticker TEXT NOT NULL PRIMARY KEY
+);
+
+insertStock:
+INSERT OR REPLACE
+INTO StockEntity (
+    open,
+    high,
+    low,
+    current,
+    previous_close,
+    name,
+    ticker_symbol
+) VALUES(?, ?, ?, ?, ?, ?, ?);
+
+insertTickerSymbol:
+INSERT OR REPLACE
+INTO TickerEntity (
+    ticker
+) VALUES(?);
+
+removeAllStocks:
+DELETE FROM StockEntity;
+
+removeAllTickerSymbols:
+DELETE FROM TickerEntity;
+
+selectTickerBySymbol:
+SELECT * FROM TickerEntity
+WHERE ticker = ?;
+
+selectAllStocksInfo:
+SELECT StockEntity.*, TickerEntity.*
+FROM StockEntity
+LEFT JOIN TickerEntity ON TickerEntity.ticker == StockEntity.ticker_symbol;
