@@ -7,7 +7,7 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import kotlinx.serialization.json.Json as KtxJson
 
-class StocksApiImpl : StocksApi {
+class StocksApi {
 
     private val stocksApiBaseUrl  = "https://api.lil.software/stocks"
 
@@ -19,7 +19,7 @@ class StocksApiImpl : StocksApi {
         }
     }
 
-    override suspend fun get(tickerSymbol: String): Stock {
+    suspend fun get(tickerSymbol: String): Stock {
         return client.get("$stocksApiBaseUrl?symbol=$tickerSymbol")
     }
 }
