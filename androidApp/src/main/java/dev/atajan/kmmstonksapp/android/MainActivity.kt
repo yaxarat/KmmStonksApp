@@ -1,12 +1,23 @@
 package dev.atajan.kmmstonksapp.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import dev.atajan.kmmstonksapp.Greeting
-import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import eu.baroncelli.dkmpsample.android.styling.KmmStonksAppTheme
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
+
+    private val appViewModel: AppViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val coreModel = appViewModel.getCoreViewModel(applicationContext)
+        setContent {
+            KmmStonksAppTheme {
+                Navigation(coreModel)
+            }
+        }
     }
+
 }

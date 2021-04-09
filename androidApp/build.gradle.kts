@@ -13,6 +13,7 @@ dependencies {
     implementation("androidx.compose.foundation:foundation-layout:${Versions.compose}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
+    implementation("androidx.navigation:navigation-compose:1.0.0-alpha10")
 }
 
 android {

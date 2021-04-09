@@ -5,8 +5,7 @@ import dev.atajan.kmmstonksapp.shared.cache.AppDatabase
 /**
  * Make sure it is only accessible from within the multiplatform module.
  */
-internal class DatabaseOperations(databaseDriverFactory: DatabaseDriverFactory) {
-    private val database = AppDatabase(databaseDriverFactory.createDriver())
+internal class DatabaseOperations(database: AppDatabase) {
     private val dbQuery = database.appDatabaseQueries
 
     /**
