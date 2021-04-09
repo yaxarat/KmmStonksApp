@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import eu.baroncelli.dkmpsample.android.styling.KmmStonksAppTheme
+import dev.atajan.kmmstonksapp.android.styling.KmmStonksAppTheme
 
 class MainActivity : ComponentActivity() {
 
