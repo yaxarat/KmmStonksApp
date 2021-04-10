@@ -4,6 +4,7 @@ import dev.atajan.kmmstonksapp.cache.Stock
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import kotlinx.serialization.json.Json as KtxJson
 
@@ -16,6 +17,10 @@ class StocksApi {
             serializer = KotlinxSerializer(KtxJson {
                 ignoreUnknownKeys = true // if the server sends extra fields, ignore them
             })
+        }
+        install(Logging) {
+            logger = Logger.DEFAULT
+            level = LogLevel.ALL
         }
     }
 

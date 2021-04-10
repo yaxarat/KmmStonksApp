@@ -1,7 +1,10 @@
 package dev.atajan.kmmstonksapp.viewModel
 
 import dev.atajan.kmmstonksapp.cache.Repository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class KMPViewModel (repo: Repository) {
 
@@ -19,5 +22,18 @@ class KMPViewModel (repo: Repository) {
     val events by lazy { Events(stateReducers) }
 
     internal val stateProvider by lazy { StateProvider(stateManager, events) }
+
+}
+
+class Events (stateReducers: StateReducers) {
+
+    internal val stateReducers by lazy { stateReducers }
+
+    // we run each event function on a main thread coroutine
+    fun onMainCoroutine (block: suspend () -> Unit) {
+        GlobalScope.launch(Dispatchers.Default) {
+            block()
+        }
+    }
 
 }

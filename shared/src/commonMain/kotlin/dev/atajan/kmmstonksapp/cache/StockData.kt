@@ -18,7 +18,7 @@ data class Stock (
     @SerialName("name")
     val name: String,
     @SerialName("ticker_symbol")
-    val tickerSymbol: Ticker,
+    val tickerSymbol: Ticker = Ticker(""),
 )
 
 @Serializable

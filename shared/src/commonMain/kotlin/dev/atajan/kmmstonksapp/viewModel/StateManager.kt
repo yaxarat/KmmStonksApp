@@ -3,6 +3,13 @@ package dev.atajan.kmmstonksapp.viewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.reflect.KClass
 
+data class AppState (val recompositionIndex : Int = 0) {
+    fun getStateProvider(model : KMPViewModel) : StateProvider {
+        return model.stateProvider
+    }
+}
+
+
 class StateManager {
     internal val mutableStateFlow = MutableStateFlow(AppState())
 
