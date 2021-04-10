@@ -8,10 +8,6 @@ import kotlinx.coroutines.launch
 
 class KMPViewModel (repo: Repository) {
 
-    companion object Factory {
-        // factory methods are defined in the platform-specific shared code
-    }
-
     val stateFlow: StateFlow<AppState>
         get() = stateManager.mutableStateFlow
 
@@ -23,6 +19,9 @@ class KMPViewModel (repo: Repository) {
 
     internal val stateProvider by lazy { StateProvider(stateManager, events) }
 
+    companion object Factory {
+        // factory methods are defined in the platform-specific shared code
+    }
 }
 
 class Events (stateReducers: StateReducers) {
@@ -31,7 +30,7 @@ class Events (stateReducers: StateReducers) {
 
     // we run each event function on a main thread coroutine
     fun onMainCoroutine (block: suspend () -> Unit) {
-        GlobalScope.launch(Dispatchers.Default) {
+        GlobalScope.launch(Dispatchers.Main) {
             block()
         }
     }

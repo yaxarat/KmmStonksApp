@@ -3,7 +3,7 @@ package dev.atajan.kmmstonksapp.viewModel
 import kotlin.reflect.KClass
 
 /**
- *
+ * State provider class that provides access to [StateManager] and [Events]
  */
 class StateProvider(
     stateManager: StateManager,
@@ -17,16 +17,23 @@ class StateProvider(
  * Screen helpers
  */
 
-interface ScreenState // we apply this empty interface to all screen state data classes
+/**
+ * This empty interface is applied to all screen state data classes
+ */
+interface ScreenState
 
-// here we define all the screenTypes
-// the AppState keeps in memory just one screenState per screenType
-// in order to support dual-pane, it makes sense to have at least a MASTER and a DETAIL
-enum class ScreenType{ MASTER, DETAIL, DIALOG }
+/**
+ *  Define all the screenTypes.
+ *  The AppState keeps in memory just one screenState per screenType in order to support dual-pane.
+ *  It makes sense to have at least a MASTER and a DETAIL
+ */
+enum class ScreenType{ MASTER, DETAIL }
 
-// here we list all screenState classes, defining their screenType
+/**
+ * List all screenState classes, defining their screenType
+ */
 fun getScreenType(stateClass : KClass<out ScreenState>) : ScreenType {
     return when (stateClass) {
-        else -> ScreenType.MASTER // we default to MASTER
+        else -> ScreenType.MASTER //Default to MASTER
     }
 }

@@ -13,3 +13,11 @@ internal fun Events.loadStocks() = onMainCoroutine {
 fun Events.insertTicker(tickerSymbol: String) = onMainCoroutine {
     stateReducers.insertTicker(tickerSymbol)
 }
+
+fun Events.insertTickers(tickerSymbols: List<String>) = onMainCoroutine {
+    stateReducers.insertTickers(tickerSymbols)
+}
+
+fun Events.showLoadingIndicator() = onMainCoroutine {
+    stateReducers.showLoadingIndicator()
+}
