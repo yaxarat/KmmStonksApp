@@ -9,7 +9,7 @@ CREATE TABLE  StockEntity (
 );
 
 CREATE TABLE TickerEntity (
-    ticker TEXT NOT NULL PRIMARY KEY
+    ticker TEXT NOT NULL
 );
 
 insertStock:

@@ -1,4 +1,5 @@
 object Versions {
+    const val accompanistCoil = "0.7.0"
     const val coroutines = "1.4.3-native-mt"
     const val compose = "1.0.0-beta04"
     const val kotlin = "1.4.32"

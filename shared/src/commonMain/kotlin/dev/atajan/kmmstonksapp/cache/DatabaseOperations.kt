@@ -18,12 +18,6 @@ internal class DatabaseOperations(database: AppDatabase) {
         }
     }
 
-    /**
-     * Function to get a list of all the rocket launches:
-     *
-     * The argument we pass to selectAllLaunchesInfo (::mapLaunchSelecting) is a function that maps the database entity class to another type.
-     * In this case, we're mapping to the RocketLaunch data model class.
-     */
     internal fun getAllStocks(): List<Stock> {
         return dbQuery.selectAllStocksInfo(::mapStockToModel).executeAsList()
     }
@@ -58,7 +52,7 @@ internal class DatabaseOperations(database: AppDatabase) {
                 val tickerSymbol = dbQuery.selectTickerBySymbol(stock.tickerSymbol.ticker).executeAsOneOrNull()
                 
                 if (tickerSymbol == null) {
-                    insertTickerSymbol(stock = stock)
+                    insertTickerSymbol(tickerSymbol = stock.tickerSymbol.ticker)
                 }
 
                 insertStock(stock)
@@ -66,8 +60,8 @@ internal class DatabaseOperations(database: AppDatabase) {
         }
     }
 
-    private fun insertTickerSymbol(stock: Stock) {
-        dbQuery.insertTickerSymbol(ticker = stock.tickerSymbol.ticker)
+    internal fun insertTickerSymbol(tickerSymbol: String) {
+        dbQuery.insertTickerSymbol(ticker = tickerSymbol)
     }
 
     private fun insertStock(stock: Stock) {
