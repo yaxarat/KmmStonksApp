@@ -8,25 +8,20 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
+import dev.atajan.kmmstonksapp.android.screen.article_list.StockDetailScreen
 import dev.atajan.kmmstonksapp.android.screen.article_list.StockListScreen
-import dev.atajan.kmmstonksapp.cache.Repository
-import dev.atajan.kmmstonksapp.screen.stock_list.StockListState
 import dev.atajan.kmmstonksapp.screen.stock_list.getStockListState
-import dev.atajan.kmmstonksapp.viewModel.Events
 import dev.atajan.kmmstonksapp.viewModel.KMPViewModel
-import dev.atajan.kmmstonksapp.viewModel.StateManager
-import dev.atajan.kmmstonksapp.viewModel.StateReducers
 
 @Composable
 fun Navigation(model: KMPViewModel) {
 
     val events = model.events
     val appState by model.stateFlow.collectAsState()
-    Log.d("D-KMP-SAMPLE","recomposition Index: "+appState.recompositionIndex.toString())
     val stateProvider = appState.getStateProvider(model)
-
-
     val navController = rememberNavController()
+
+    Log.d("D-KMP-SAMPLE","recomposition Index: "+appState.recompositionIndex.toString())
 
     NavHost(
         navController = navController,
@@ -36,15 +31,15 @@ fun Navigation(model: KMPViewModel) {
             StockListScreen(
                 stockListState = stateProvider.getStockListState(),
                 events = events,
-                onListItemClick = {}
+                onListItemClick = { navController.navigate("stock/$it") }
             )
         }
-//        composable("country/{item}") { backStackEntry ->
-//            val item = backStackEntry.arguments?.getString("item")!!
-//            CountryDetailScreen(
+        composable("stock/{item}") { backStackEntry ->
+            val item = backStackEntry.arguments?.getString("item")!!
+            StockDetailScreen(
 //                countryDetailState = stateProvider.getCountryDetailState(item)
-//            )
-//        }
+            )
+        }
     }
 
 }

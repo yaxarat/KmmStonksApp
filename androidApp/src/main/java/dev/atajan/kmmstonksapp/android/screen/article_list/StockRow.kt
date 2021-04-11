@@ -1,24 +1,23 @@
 package dev.atajan.kmmstonksapp.android.screen.article_list
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
-import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.CoilImage
 import dev.atajan.kmmstonksapp.cache.Stock
 
 @Composable
-fun StockRow(stock: Stock, onClick: (String) -> Unit) {
+fun StockRow(
+    stock: Stock,
+    onClick: (String) -> Unit
+) {
     Card(
         shape = MaterialTheme.shapes.small,
         modifier = Modifier
@@ -75,14 +74,18 @@ fun StockRow(stock: Stock, onClick: (String) -> Unit) {
                         text = "\$${stock.current}",
                         textAlign = TextAlign.End,
                         style = MaterialTheme.typography.body1,
-                        modifier = Modifier.padding(vertical = 6.dp).fillMaxWidth()
+                        modifier = Modifier
+                            .padding(vertical = 6.dp)
+                            .fillMaxWidth()
                     )
                     Text(
                         text = "Previous close \$${stock.previousClose}",
                         textAlign = TextAlign.End,
                         color = Color.LightGray,
                         style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(vertical = 6.dp).fillMaxWidth()
+                        modifier = Modifier
+                            .padding(vertical = 6.dp)
+                            .fillMaxWidth()
                     )
                 }
             }

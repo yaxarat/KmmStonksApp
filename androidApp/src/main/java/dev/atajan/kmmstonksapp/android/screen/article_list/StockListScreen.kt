@@ -2,15 +2,13 @@ package dev.atajan.kmmstonksapp.android.screen.article_list
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.foundation.lazy.items
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -23,7 +21,6 @@ import dev.atajan.kmmstonksapp.screen.stock_list.insertTickers
 import dev.atajan.kmmstonksapp.screen.stock_list.showLoadingIndicator
 import dev.atajan.kmmstonksapp.viewModel.Events
 
-@ExperimentalComposeUiApi
 @Composable
 fun StockListScreen(
     stockListState: StockListState,
@@ -48,7 +45,7 @@ fun StockListScreen(
                         .fillMaxWidth()
                         .clickable {
                             events.showLoadingIndicator()
-                            events.insertTickers(listOf("MSFT", "AAPL", "TSLA", "COF", "BA", "V", "AMZN", "GOOG", "LYFT", "FB", "GME"))
+                            events.insertTickers(listOf("MSFT", "AAPL", "TSLA", "COF", "BA", "V", "AMZN", "GOOG", "LYFT", "FB", "GME")) // For testing large insert
                         },
                     textAlign = TextAlign.Center,
                     fontSize = 18.sp
@@ -57,8 +54,8 @@ fun StockListScreen(
                 LazyColumn(modifier = Modifier.fillMaxWidth()) {
                     items(
                         items = stockListState.stockListItems,
-                        itemContent = { item ->
-                            StockRow(stock = item, onClick = onListItemClick)
+                        itemContent = { stock ->
+                            StockRow(stock = stock, onClick = onListItemClick)
                         }
                     )
                 }

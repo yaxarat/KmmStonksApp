@@ -49,6 +49,7 @@ android {
 kotlin.sourceSets.all {
     languageSettings.apply {
         useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
+        useExperimentalAnnotation("androidx.compose.ui.ExperimentalComposeUiApi")
         useExperimentalAnnotation("androidx.compose.foundation.ExperimentalFoundationApi")
     }
 }
