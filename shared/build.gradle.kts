@@ -2,13 +2,10 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods") // M1 nightmare https://github.com/CocoaPods/CocoaPods/issues/10518
     kotlin("plugin.serialization")
     id("com.android.library")
     id("com.squareup.sqldelight")
 }
-
-version = "1.0"
 
 // next block is a workaround for https://youtrack.jetbrains.com/issue/KT-43944
 // it will not be needed anymore in Kotlin 1.5
@@ -32,16 +29,13 @@ kotlin {
         else
             ::iosX64
 
-    iosTarget("ios") {}
-
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        frameworkName = "shared"
-        podfile = project.file("../iosApp/Podfile")
+    iosTarget("ios") {
+        binaries {
+            framework {
+                baseName = "shared"
+            }
+        }
     }
-    
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -89,6 +83,21 @@ android {
         targetSdkVersion(30)
     }
 }
+
+val packForXcode by tasks.creating(Sync::class) {
+    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
+    val framework = kotlin.targets.getByName<KotlinNativeTarget>("ios").binaries.getFramework(mode)
+    val targetDir = File(buildDir, "xcode-frameworks")
+
+    group = "build"
+    dependsOn(framework.linkTask)
+    inputs.property("mode", mode)
+
+    from({ framework.outputDirectory })
+    into(targetDir)
+}
+
+tasks.getByName("build").dependsOn(packForXcode)
 
 sqldelight {
     database("AppDatabase") {

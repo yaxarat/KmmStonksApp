@@ -43,5 +43,4 @@ fun KMPViewModel.onChange(provideNewState: ((AppState) -> Unit)) : Closeable {
             job.cancel()
         }
     }
-
 }
