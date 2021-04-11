@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
+    kotlin("native.cocoapods") // M1 nightmare https://github.com/CocoaPods/CocoaPods/issues/10518
     kotlin("plugin.serialization")
     id("com.android.library")
     id("com.squareup.sqldelight")
