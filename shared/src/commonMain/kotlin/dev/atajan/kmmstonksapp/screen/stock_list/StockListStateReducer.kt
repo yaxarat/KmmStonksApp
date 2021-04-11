@@ -27,7 +27,7 @@ suspend fun StateReducers.insertTicker(tickerSymbol: String) {
     operation.insertTickerSymbol(tickerSymbol)
 
     StocksApi().get(tickerSymbol).let {
-        operation.createStocks(listOf(it))
+        operation.createStocks(listOf(it.copy(tickerSymbol = Ticker(ticker = tickerSymbol))))
     }
 
 
