@@ -1,4 +1,4 @@
-package dev.atajan.kmmstonksapp.android.screen.article_list
+package dev.atajan.kmmstonksapp.android.screen.stock_list
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

@@ -44,3 +44,7 @@ selectAllStocksInfo:
 SELECT StockEntity.*, TickerEntity.*
 FROM StockEntity
 LEFT JOIN TickerEntity ON TickerEntity.ticker == StockEntity.ticker_symbol;
+
+selectStockByTicker:
+SELECT * FROM StockEntity
+WHERE StockEntity.ticker_symbol = ?;

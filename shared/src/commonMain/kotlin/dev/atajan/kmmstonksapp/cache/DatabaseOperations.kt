@@ -75,4 +75,19 @@ internal class DatabaseOperations(database: AppDatabase) {
             ticker_symbol = stock.tickerSymbol.ticker
         )
     }
+
+    internal fun getStockWithTicker(tickerSymbol: String): Stock {
+        dbQuery.selectStockByTicker(tickerSymbol).executeAsOne().apply {
+            return mapStockToModel(
+                open = open,
+                high = high,
+                low = low,
+                current = current,
+                previous_close = previous_close,
+                name = name,
+                ticker = ticker_symbol,
+                ticker_symbol = ticker_symbol
+            )
+        }
+    }
 }

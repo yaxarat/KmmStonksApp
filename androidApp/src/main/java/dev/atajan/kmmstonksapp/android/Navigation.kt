@@ -8,8 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
-import dev.atajan.kmmstonksapp.android.screen.article_list.StockDetailScreen
-import dev.atajan.kmmstonksapp.android.screen.article_list.StockListScreen
+import dev.atajan.kmmstonksapp.android.screen.stock_list.StockDetailScreen
+import dev.atajan.kmmstonksapp.android.screen.stock_list.StockListScreen
+import dev.atajan.kmmstonksapp.screen.stock_detail.getStockDetailState
 import dev.atajan.kmmstonksapp.screen.stock_list.getStockListState
 import dev.atajan.kmmstonksapp.viewModel.KMPViewModel
 
@@ -21,7 +22,7 @@ fun Navigation(model: KMPViewModel) {
     val stateProvider = appState.getStateProvider(model)
     val navController = rememberNavController()
 
-    Log.d("D-KMP-SAMPLE","recomposition Index: "+appState.recompositionIndex.toString())
+    Log.d("Stonks App","recomposition Index: "+appState.recompositionIndex.toString())
 
     NavHost(
         navController = navController,
@@ -37,7 +38,7 @@ fun Navigation(model: KMPViewModel) {
         composable("stock/{item}") { backStackEntry ->
             val item = backStackEntry.arguments?.getString("item")!!
             StockDetailScreen(
-//                countryDetailState = stateProvider.getCountryDetailState(item)
+                stockDetailState = stateProvider.getStockDetailState(item)
             )
         }
     }
