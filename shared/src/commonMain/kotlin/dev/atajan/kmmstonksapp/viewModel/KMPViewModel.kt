@@ -5,6 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlin.reflect.KClass
 
 class KMPViewModel (repo: Repository) {
 
@@ -25,14 +26,17 @@ class KMPViewModel (repo: Repository) {
 }
 
 class Events (stateReducers: StateReducers) {
-
     internal val stateReducers by lazy { stateReducers }
 
-    // we run each event function on a main thread coroutine
-    fun onMainCoroutine (block: suspend () -> Unit) {
-        GlobalScope.launch(Dispatchers.Main) {
-            block()
+    // we run each event function on a Dispatchers.Main coroutine, scoped on the specific screen
+    fun screenCoroutine(
+        stateClass: KClass<out ScreenState>,
+        block: suspend () -> Unit
+    ) {
+        stateReducers.stateManager.getScreenCoroutineScope(stateClass)?.let {
+            it.launch {
+                block()
+            }
         }
     }
-
 }

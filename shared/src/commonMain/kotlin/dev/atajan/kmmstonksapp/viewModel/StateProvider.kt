@@ -1,5 +1,7 @@
 package dev.atajan.kmmstonksapp.viewModel
 
+import dev.atajan.kmmstonksapp.screen.stock_detail.StockDetailState
+import dev.atajan.kmmstonksapp.screen.stock_list.StockListState
 import kotlin.reflect.KClass
 
 /**
@@ -34,6 +36,8 @@ enum class ScreenType{ MASTER, DETAIL }
  */
 fun getScreenType(stateClass : KClass<out ScreenState>) : ScreenType {
     return when (stateClass) {
-        else -> ScreenType.MASTER //Default to MASTER
+        StockListState::class -> ScreenType.MASTER
+        StockDetailState::class -> ScreenType.DETAIL
+        else -> ScreenType.MASTER
     }
 }

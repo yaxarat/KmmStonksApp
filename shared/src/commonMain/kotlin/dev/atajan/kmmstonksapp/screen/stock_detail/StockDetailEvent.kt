@@ -5,6 +5,6 @@ import dev.atajan.kmmstonksapp.viewModel.Events
 
 /********** INTERNAL event function, used by the StateProvider **********/
 
-internal fun Events.loadStock(ticker: String) = onMainCoroutine {
+internal fun Events.loadStock(ticker: String) = screenCoroutine(StockDetailState::class) {
     stateReducers.fetchStockDetail(ticker = ticker)
 }

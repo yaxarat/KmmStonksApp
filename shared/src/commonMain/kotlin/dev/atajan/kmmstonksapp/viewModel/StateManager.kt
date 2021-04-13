@@ -1,12 +1,17 @@
 package dev.atajan.kmmstonksapp.viewModel
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.reflect.KClass
 
 class StateManager {
     internal val mutableStateFlow = MutableStateFlow(AppState())
 
-    val screenStatesMap : MutableMap<ScreenType,ScreenState> = mutableMapOf()
+    val screenStatesMap : MutableMap<ScreenType, ScreenState> = mutableMapOf()
+    val screenScopesMap : MutableMap<ScreenType, CoroutineScope> = mutableMapOf()
 
     // only called by the State Providers
     inline fun <reified T:ScreenState> getScreen(
@@ -18,6 +23,9 @@ class StateManager {
         val currentState = screenStatesMap[screenType] as? T
 
         if (currentState == null || reinitWhen(currentState)) {
+            screenScopesMap[screenType]?.cancel()
+            screenScopesMap[screenType] = CoroutineScope(Job() + Dispatchers.Main)
+
             val initializedState = initState()
             screenStatesMap[screenType] = initializedState
             callOnInit()
@@ -44,6 +52,11 @@ class StateManager {
 
     fun triggerRecomposition() {
         mutableStateFlow.value = AppState(mutableStateFlow.value.recompositionIndex + 1)
+    }
+
+    fun getScreenCoroutineScope(stateClass : KClass<out ScreenState>) : CoroutineScope? {
+        val screenType = getScreenType(stateClass)
+        return screenScopesMap[screenType]
     }
 }
 
