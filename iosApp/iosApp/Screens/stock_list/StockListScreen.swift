@@ -19,20 +19,20 @@ struct StockListScreen: View {
         if stockListState.isLoading {
             LoadingComponent()
         } else {
-            if stockListState.stockListItems.isEmpty {
-                Text("No stock available, tap here to add a bunch")
-                    .padding()
-                    .onTapGesture {
-                        event.showLoadingIndicator()
-                        event.insertTickers(tickerSymbols: ["MSFT", "AAPL", "TSLA", "COF", "BA", "V", "AMZN", "GOOG", "LYFT", "FB", "GME"])
-                    }
-            } else {
-                VStack {
-                    SearchBar() { ticker in
-                        event.showLoadingIndicator()
-                        event.insertTicker(tickerSymbol: ticker)
-                    }
-                    
+            VStack {
+                SearchBar() { ticker in
+                    event.showLoadingIndicator()
+                    event.insertTicker(tickerSymbol: ticker)
+                }
+                
+                if stockListState.stockListItems.isEmpty {
+                    Text("No stock available, tap here to add a bunch")
+                        .padding()
+                        .onTapGesture {
+                            event.showLoadingIndicator()
+                            event.insertTickers(tickerSymbols: ["MSFT", "AAPL", "TSLA", "COF", "BA", "V", "AMZN", "GOOG", "LYFT", "FB", "GME"])
+                        }
+                } else {
                     ScrollView {
                         ForEach(stockListState.stockListItems, id: \.self) { stock in
                             StockRow(stock: stock)

@@ -11,6 +11,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		7555FFB2242A642300829871 /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7555FFB1242A642300829871 /* shared.framework */; };
 		7555FFB3242A642300829871 /* shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7555FFB1242A642300829871 /* shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE57FB7C2626092F001B36FE /* StockDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57FB7B2626092F001B36FE /* StockDetailScreen.swift */; };
 		CE6F31FD26238C3700775578 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6F31FC26238C3700775578 /* AppViewModel.swift */; };
 		CE6F320126238DCC00775578 /* LoadingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6F320026238DCC00775578 /* LoadingComponent.swift */; };
 		CE6F320426238E0400775578 /* StockListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6F320326238E0400775578 /* StockListScreen.swift */; };
@@ -39,6 +40,7 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7555FFB1242A642300829871 /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = shared.framework; path = "../shared/build/xcode-frameworks/shared.framework"; sourceTree = "<group>"; };
+		CE57FB7B2626092F001B36FE /* StockDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailScreen.swift; sourceTree = "<group>"; };
 		CE6F31FC26238C3700775578 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		CE6F320026238DCC00775578 /* LoadingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingComponent.swift; sourceTree = "<group>"; };
 		CE6F320326238E0400775578 /* StockListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListScreen.swift; sourceTree = "<group>"; };
@@ -97,9 +99,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE57FB7A26260916001B36FE /* stock_detail */ = {
+			isa = PBXGroup;
+			children = (
+				CE57FB7B2626092F001B36FE /* StockDetailScreen.swift */,
+			);
+			path = stock_detail;
+			sourceTree = "<group>";
+		};
 		CE6F31FE26238DB200775578 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE57FB7A26260916001B36FE /* stock_detail */,
 				CE6F320226238DE700775578 /* stock_list */,
 			);
 			path = Screens;
@@ -222,6 +233,7 @@
 				CE6F320626238E2200775578 /* StockRow.swift in Sources */,
 				CE6F320126238DCC00775578 /* LoadingComponent.swift in Sources */,
 				CE6F31FD26238C3700775578 /* AppViewModel.swift in Sources */,
+				CE57FB7C2626092F001B36FE /* StockDetailScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
