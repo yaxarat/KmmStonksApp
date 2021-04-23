@@ -1,6 +1,8 @@
 # KmmStonksApp - A Kotlin Multi Platform(Mobile) concept app
 
 This is a proof of concept app built using Kotlin Multi Platform Mobile.
+
+
 The app was created with [D-KMP architecture](https://danielebaroncelli.medium.com/the-future-of-apps-declarative-uis-with-kotlin-multiplatform-d-kmp-part-1-3-c0e1530a5343).
 And makes an extensive use of shareable viewmodel/data layer between Android and iOS. This could also be integrated with web, but that is out of scope for this demo.
 
