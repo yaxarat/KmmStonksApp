@@ -7,7 +7,7 @@ The app was created with [D-KMP architecture](https://danielebaroncelli.medium.c
 And makes an extensive use of shared viewmodel/data/networking layer between Android and iOS. This could also be integrated with web, but that is out of scope for this demo.
 
 
-<img src="images/DKMP.png" width="400">
+<img src="images/DKMP.png" width="700">
 
 
 The app flow is:
